@@ -70,7 +70,7 @@ bool CParser::linesToPoints(int line) {
     for (int i = 0; i < icols; i++) {
         int density = std::stoi(currLine.substr(0, currLine.find(" ")));
         currLine.erase(0, currLine.find(" ") + 1);
-        data.emplace_back(std::tuple< int, int, int >{line - 6 + (yllcorner - irows), i + xllcorner, density });
+        data.emplace_back(std::tuple< int, int, int >{i , line - 6 , density });
     }
     return true;
 }
@@ -83,7 +83,8 @@ nlohmann::json CParser::dumpToJson() {
             pointObj["y"] = y;
             pointObj["density"] = z;
 
-            dumpObj += pointObj;   
+            dumpObj += pointObj;
+    
     }
     return dumpObj;
 }
