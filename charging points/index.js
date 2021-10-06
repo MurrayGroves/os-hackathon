@@ -11,15 +11,15 @@ function output_grid() {
     var kw = 0
     // Add up KW for all connectors at the charging point
     c["Connector"].forEach((cn) => {
-      kw += parseInt(cn["RatedOutputkW"])
+      kw += parseFloat(cn["RatedOutputkW"])
     })
     // convert long/lat to BNG
-    let transform = os.Transform.fromLatLng({ lat: parseInt(loc["Latitude"]), lng: parseInt(loc["Longitude"]) })
+    let transform = os.Transform.fromLatLng({ lat: parseFloat(loc["Latitude"]), lng: parseFloat(loc["Longitude"]) })
     // add the converted charging point to the list
     grid.push({ 
       x: Math.floor(transform.ea / 1000), 
       y: Math.floor(transform.no / 1000), 
-      kw: kw 
+      kw: Math.round(kw * 10) / 10
     })
   })
   // write output
