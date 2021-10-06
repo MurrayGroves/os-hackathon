@@ -1,7 +1,8 @@
 var os = require("./os-transform.js")
 var chargers = require("./chargers.json")
 var fs = require('fs');
-var grid = []
+var grid = new Array(700).fill(0).map(() => new Array(1300).fill(0));
+
 
 function output_grid() {
   // iterate through the list of chargers and convert this to our format
@@ -16,11 +17,13 @@ function output_grid() {
     // convert long/lat to BNG
     let transform = os.Transform.fromLatLng({ lat: parseFloat(loc["Latitude"]), lng: parseFloat(loc["Longitude"]) })
     // add the converted charging point to the list
-    grid.push({ 
-      x: Math.floor(transform.ea / 1000), 
-      y: Math.floor(transform.no / 1000), 
-      kw: Math.round(kw * 10) / 10
-    })
+    try{
+      grid[Math.floor(transform.ea / 1000)][Math.floor(transform.no / 1000)] +=  parseFloat(kw.toFixed(2))
+    }
+    catch{
+      
+    }
+
   })
   // write output
   fs.writeFile('charging_grid.json', JSON.stringify(grid), 'utf8', () => { console.log("Written to [charging_grid.json]") });
