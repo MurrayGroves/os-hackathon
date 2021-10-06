@@ -14,7 +14,7 @@ see [charging_grid.json](charging_grid.json) for the JSON output
 }
 ```
 ## Example
-This is for the charging point at 51.431454N, 0.031175W
+This is for the charging point at 51.431454N, 0.031175E
 ```json
 {
   "x": 541,
