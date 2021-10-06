@@ -1,6 +1,6 @@
 # Converting existing charging points into a usable format
 ## Running
-```js
+```bash
 node index.js
 ```
 thats it!
