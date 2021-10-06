@@ -1,0 +1,24 @@
+{
+  "name": "os-hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "proj4": "^2.7.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MurrayGroves/os-hackathon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MurrayGroves/os-hackathon/issues"
+  },
+  "homepage": "https://github.com/MurrayGroves/os-hackathon#readme"
+}
