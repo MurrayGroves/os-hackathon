@@ -14,9 +14,9 @@ public:
     //parse
     //dump to json
 private:
-    
+
     int icols;
-    int irows; 
+    int irows;
     int xllcorner;
     int yllcorner;
     int cellsize;
@@ -59,7 +59,7 @@ bool CParser::parse() {
         else
             linesToPoints(i);
         i++;
-               
+
     }
     return  true;
 }
@@ -75,12 +75,12 @@ bool CParser::linesToPoints(int line) {
 nlohmann::json CParser::dumpToJson() {
     nlohmann::json dumpObj;
     for (auto const& [x, y, z] : data) {
-        
+
         nlohmann::json pointObj;
         pointObj["x"] = x;
         pointObj["y"] = y;
         pointObj["density"] = z;
-        
+
         dumpObj += pointObj;
 
     }
@@ -88,7 +88,7 @@ nlohmann::json CParser::dumpToJson() {
 }
 int main()
 {
-   
+
     CParser census;
     if (!census.loadFile("UK_residential_population_2011_1_km.asc")) {
         std::cout << "File failed to load, please ensure 'UK_residential_population_2011_1_km.asc' is in the correct directory\n";
@@ -106,7 +106,7 @@ int main()
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
+// Tips for Getting Started:
 //   1. Use the Solution Explorer window to add/manage files
 //   2. Use the Team Explorer window to connect to source control
 //   3. Use the Output window to see build output and other messages
