@@ -43,6 +43,7 @@ bool CParser::loadFile(std::string fileName) {
 }
 bool CParser::parse() {
     int i = 0;
+    std::cout << "Parsing " << vecLines.size() << " lines of data into data array\n";
     for (auto currLine : vecLines) {
         if (currLine.find("ncols") != std::string::npos)
             icols = std::stoi(currLine.substr(14, std::string::npos));
@@ -61,6 +62,7 @@ bool CParser::parse() {
         i++;
 
     }
+    std::cout << "Done!\n";
     return  true;
 }
 bool CParser::linesToPoints(int line) {
@@ -68,21 +70,20 @@ bool CParser::linesToPoints(int line) {
     for (int i = 0; i < icols; i++) {
         int density = std::stoi(currLine.substr(0, currLine.find(" ")));
         currLine.erase(0, currLine.find(" ") + 1);
-        data.emplace_back(std::tuple< int, int, int >{line - 6 + xllcorner, i + yllcorner, density });
+        data.emplace_back(std::tuple< int, int, int >{line - 6 + (yllcorner - irows), i + xllcorner, density });
     }
     return true;
 }
 nlohmann::json CParser::dumpToJson() {
     nlohmann::json dumpObj;
+    std::cout << "Converting " << data.size() << " entries into json\n";
     for (auto const& [x, y, z] : data) {
+            nlohmann::json pointObj;
+            pointObj["x"] = x;
+            pointObj["y"] = y;
+            pointObj["density"] = z;
 
-        nlohmann::json pointObj;
-        pointObj["x"] = x;
-        pointObj["y"] = y;
-        pointObj["density"] = z;
-
-        dumpObj += pointObj;
-
+            dumpObj += pointObj;   
     }
     return dumpObj;
 }
@@ -99,7 +100,8 @@ int main()
     std::ofstream out("output.txt");
     out << dump;
     out.close();
-    std::cout << "Hello World!\n";
+    std::cout << "Done!\nPress enter to continue";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 }
 
