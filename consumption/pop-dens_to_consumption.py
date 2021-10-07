@@ -1,6 +1,6 @@
 import json
 
-CONSUMPTION = 0.124583333  # KW per person
+CONSUMPTION = 0.124583333  # KW per person. Calculated by cars per person * EV consumption per mile * average car mileage
 
 f = open("population density/data processor/nooffset.json")
 data = f.read()
