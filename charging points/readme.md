@@ -4,21 +4,9 @@
 node index.js
 ```
 thats it!
-see [charging_grid.json](charging_grid.json) for the JSON output
-## Format
-```json
-{
-  "x": [int],
-  "y": [int],
-  "kw": [float]
-}
-```
-## Example
-This is for the charging point at 51.431454N, 0.031175E
-```json
-{
-  "x": 541,
-  "y": 172,
-  "kw": 10.7
-}
+see [charging_grid.json](charging_grid.json) for the array output.
+
+Array represents England in BNG (in 1k KM squares) where values are KW/h of the square.
+```py
+grid[x][y] = [kw]
 ```
